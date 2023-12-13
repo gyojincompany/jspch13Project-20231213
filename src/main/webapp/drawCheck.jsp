@@ -1,21 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.sql.*" %>    
+<%@page import="java.sql.*" %>     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 탈퇴 체크</title>
 </head>
 <body>
 	<%
 		request.setCharacterEncoding("utf-8");//파라미터 값 utf-8 인코딩
 		
-		String uid = request.getParameter("userID");//회원가입 시 입력한 아이디
-		String upw = request.getParameter("userPW");//회원가입 시 입력한 비밀번호
-		String uemail = request.getParameter("userEMAIL");//회원가입 시 입력한 이메일
+		String uid = request.getParameter("userID");//회원가입 시 입력한 아이디		
 		
-		String sql="INSERT INTO membertb(userid, userpw, useremail) VALUES('"+uid+"','"+upw+"','"+uemail+"')";
+		String sql="DELETE FROM members WHERE userid='"+uid+"'";
 		
 		String driverName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/memberdata";
@@ -33,11 +31,11 @@
 			int success = stmt.executeUpdate(sql);//SQL 문 실행->성공하면 정수 1이 반환
 			
 			if(success == 1) {//조건이 참이면 sql문 성공적으로 실행
-				//out.println("회원 가입 성공!!");
-				response.sendRedirect("signupSuccess.jsp");
+				//out.println("회원 탈퇴 성공!!->"+success);
+				response.sendRedirect("drawSuccess.jsp");
 			} else {
-				//out.println("회원 가입 실패!!");
-				response.sendRedirect("signup.jsp");
+				//out.println("회원 탈퇴 실패!!->"+success);
+				response.sendRedirect("drawErr.jsp");
 			}
 			
 		} catch(Exception e) {
@@ -56,6 +54,5 @@
 		}
 	
 	%>
-	
 </body>
 </html>
