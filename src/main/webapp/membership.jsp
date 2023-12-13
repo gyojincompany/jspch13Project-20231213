@@ -20,6 +20,11 @@
 				</form>
 			</td>
 			<td>
+				<form action="modify.jsp">
+					<input type="submit" value="▼ 회원정보 수정하기 ▼">
+				</form>
+			</td>
+			<td>
 				<form action="withdraw.jsp">
 					<input type="submit" value="회원 탈퇴하기 ▶">
 				</form>
