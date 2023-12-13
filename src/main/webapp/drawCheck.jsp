@@ -13,7 +13,7 @@
 		
 		String uid = request.getParameter("userID");//회원가입 시 입력한 아이디		
 		
-		String sql="DELETE FROM members WHERE userid='"+uid+"'";
+		String sql="DELETE FROM membertb WHERE userid='"+uid+"'";
 		
 		String driverName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/memberdata";
