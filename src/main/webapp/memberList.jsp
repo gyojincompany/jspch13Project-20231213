@@ -39,16 +39,18 @@
 			rs = stmt.executeQuery(sql);//select문 실행->executeQuery로 SQL문 실행
 			//DB에서 보내주는 select문의 실행결과를 ResultSet 클래스로 만든 rs로 받음
 			
-			
+			int count = 0;
 			while(rs.next()) {				
 				String uid = rs.getString("userid");
 				String uemail = rs.getString("useremail");
 				String signuptime = rs.getString("signuptime");
 				
 				out.println(uid + " / " + uemail + " / " + signuptime + "<br>");
+				
+				count++;
 			}
 			
-			out.println("총 회원 수 : 3 명");
+			out.println("총 회원 수 : "+count+" 명");
 			
 			
 		} catch(Exception e) {
@@ -69,5 +71,15 @@
 			}
 		}
 	%>	
+	<br>
+	<hr>
+	<input type="button" value="◀ 회원탈퇴시키기" onclick="script:window.location.href='withdraw.jsp'">
+	<input type="button" value="로그아웃 ▶" onclick="script:window.location.href='logout.jsp'">
+	
+	
+	
+	
+	
+	
 </body>
 </html>
