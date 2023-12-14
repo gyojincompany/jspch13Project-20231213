@@ -41,16 +41,13 @@
 			//DB에서 보내주는 select문의 실행결과를 ResultSet 클래스로 만든 rs로 받음
 			
 			
-			if(rs == null) {
-				response.sendRedirect("modify.jsp");
-			} else {
-				while(rs.next()) {
+			if(rs.next()) {//조건이 참->rs내에 레코드가 1개 들어있다는 것임				
 					db_userid = rs.getString("userid");
 					db_userpw = rs.getString("userpw");
 					db_useremail = rs.getString("useremail");
-					db_signuptime = rs.getString("signuptime");	
-				}
-				
+					db_signuptime = rs.getString("signuptime");
+			} else {				
+				response.sendRedirect("modify.jsp");
 			}
 			
 			
@@ -75,10 +72,13 @@
 	
 	<h3>수정할 회원 정보</h3>
 	<hr>
-	아이디 : <%= db_userid %><br><br>
-	비밀번호 : <%= db_userpw %><br><br>
-	이메일 : <%= db_useremail %><br><br>
-	가입일 : <%= db_signuptime %><br><br>
+	<form action="modifyOk.jsp">
+		아이디 : <%= db_userid %><input type="hidden" name="modifyID" value="<%= db_userid %>"><br><br>
+		비밀번호 : <input type="text" name="modifyPW" value="<%= db_userpw %>"><br><br>
+		이메일 : <input type="text" name="modifyEMAIL" value="<%= db_useremail %>"><br><br>
+		가입일 : <%= db_signuptime %><br><br>
+		<input type="submit" value="정보수정">
+	</form>
 	
 	
 </body>
